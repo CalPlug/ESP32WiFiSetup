@@ -5,10 +5,6 @@
 #include "Button.h"
 
 ////////////////////////////////INITIALIZERS/////////////////////////////////
-// const char* mqttServer = "tailor.cloudmqtt.com"; //server name
-// const char* mqttUser = "jnxgsquu";
-// const char* mqttPassword = "m4V6RAY7mkD_";
-// const int mqttPort =  10051; //port number
 
 char* AP_NameString = "Water Cooler Buddy ESP_AP";//change this if you want to change the AP's name
 bool isAPmode = false;
