@@ -4,7 +4,7 @@
 #pragma once
 #include <WiFi.h>
 #include <WiFiClient.h>
-#include <WiFiManager1.h>
+#include "inc/WiFiManager1.h"
 #include <PubSubClient.h>
 // #include "lcd.h"
 
