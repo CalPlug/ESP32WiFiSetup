@@ -261,15 +261,7 @@ void connectToWifi() {
   Serial.print("SSID: "); Serial.println(wifiManager.getSSID());
   Serial.print("Password: "); Serial.println(wifiManager.getPassword());
 
-  //if in here then the esp32 has been configured before so it already had an ssid and psswd configured. so just autoconnect, and it will do the job of connecting
-  // if(ap_name != "")
-  // {
-  //   bool connected = wifiManager.autoConnect(ap_name);
-  // }
-  // else
-  // {
   bool connected = wifiManager.autoConnect(AP_NameString);
-  // }
   for (int j = 0; WiFi.status() != WL_CONNECTED; j++) {
     Serial.print(".");
     delay(1000);
