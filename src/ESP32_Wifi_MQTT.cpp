@@ -285,33 +285,34 @@ void connectToWifi() {
   load_eeprom_data();
 }
 
-void setupWifiClient()
-{
-  WiFi.disconnect();
-  Serial.println("Connecting to " + String(ssid));
-
-  if(strlen(pwd) != 0){
-    WiFi.begin(ssid, pwd);
-  }
-
-  else{
-     Serial.println("NO PASSWORD");
-    WiFi.begin(ssid);
-  }
-
-  // try 30 times to connect
-  int triesMax = 30;
-  int tries = 0;
-
-  // WL_CONNECTED is a constant defined in some library...
-  while ((WiFi.status() != WL_CONNECTED) && (tries < triesMax)) {
-    //blinkOnce(LEDR, 500);
-    delay(500);
-    Serial.print(".");
-    tries++;
-  }
-  Serial.println();
-}
+//Used the following function as a backbone to connectToWifi
+// void setupWifiClient()
+// {
+//   WiFi.disconnect();
+//   Serial.println("Connecting to " + String(ssid));
+//
+//   if(strlen(pwd) != 0){
+//     WiFi.begin(ssid, pwd);
+//   }
+//
+//   else{
+//      Serial.println("NO PASSWORD");
+//     WiFi.begin(ssid);
+//   }
+//
+//   // try 30 times to connect
+//   int triesMax = 30;
+//   int tries = 0;
+//
+//   // WL_CONNECTED is a constant defined in some library...
+//   while ((WiFi.status() != WL_CONNECTED) && (tries < triesMax)) {
+//     //blinkOnce(LEDR, 500);
+//     delay(500);
+//     Serial.print(".");
+//     tries++;
+//   }
+//   Serial.println();
+// }
 
 
 void EEPROMResetButtonPressISR()
@@ -500,17 +501,17 @@ void esp_wifi_mqtt_setup()
   Serial.print("EEPROM recorded MQTTUSER: "); Serial.println(mqttUser);
   Serial.print("EEPROM recorded MQTTPASSWORD: "); Serial.println(mqttPassword);
   Serial.println();
-  // if (configured[0] != '1')
-  // { //if you get AP mode to work make it check if in client mode; need to set default port if so
-  //   Serial.println("not configured");
-  //   enterWiFiManager();
-  // }
-  // else
-  // {
-  //   Serial.println("configured");
-  //   connectToWifi();
-  // }
-  enterWiFiManager();
+  if (configured[0] != '1')
+  { //if you get AP mode to work make it check if in client mode; need to set default port if so
+    Serial.println("not configured");
+    enterWiFiManager();
+  }
+  else
+  {
+    Serial.println("configured");
+    connectToWifi();
+  }
+  //enterWiFiManager();
   //////////////////////////MQTT SETUP///////////////////////////////////
 
   start_mqtt();
